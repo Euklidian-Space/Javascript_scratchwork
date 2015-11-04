@@ -21,15 +21,15 @@ console.log(letter_count("hello"));
 
 
 
-function letter_count(str){ debugger;
+function letter_count(str){ //debugger;
   var chk_str = [];
   var count = 0;
 
   for(var i = 0; i < str.length; i++){
+    chk_str.push(str[i]);
+    for(var j = i + 1; j < str.length; j++){
+      if(chk_str[i] === str[j]) count++;
 
-    for(var j = 0; j < chk_str.length + 1; j++){
-      if(chk_str[j] === str[i]) count++;
-      chk_str.push(str[i]);
     }
 
 
