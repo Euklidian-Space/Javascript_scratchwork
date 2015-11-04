@@ -15,7 +15,7 @@ function letter_repeat_counter(str){ //debugger;
 }
 
 
-function LetterCountI(str) { debugger;
+function LetterCountI(str) { //debugger;
 
   // code goes here
   var data_scrubbed_str = str.split(" ");
