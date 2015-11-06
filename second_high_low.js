@@ -27,4 +27,4 @@ function second_high_low(array){ //debugger;
 }
 
 //console.log(second_high_low([7, 7, 12, 98, 106]));
-console.log(second_high_low([90,90]));
+//console.log(second_high_low([90,90]));
