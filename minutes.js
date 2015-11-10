@@ -1,4 +1,4 @@
-function time_difference(str) {
+function time_difference(str) { //debugger;
 
   var data_scrub = str.split("-");
   var military_time = [to_milit_time(data_scrub[0]),to_milit_time(data_scrub[1])];
@@ -9,7 +9,7 @@ function time_difference(str) {
 
 }
 
-function to_milit_time(str) { debugger;
+function to_milit_time(str) { //debugger;
   var looper = str.indexOf(":");
   var colon_split = str.split(":");
   var calc_str = [];
@@ -30,14 +30,14 @@ function to_milit_time(str) { debugger;
 
 }
 
-function str_difference (str1,str2) { debugger;
+function str_difference (str1,str2) { //debugger;
   var str1_split = str1.split(":");
   var str2_split = str2.split(":");
   if ((str2_split[0] - str1_split[0]) < 0) {
-    var diff_in_hours = str1_split[0] - str2_split[0] + 24;
-    return ((diff_in_hours * 60) + (str1_split[1] - str2_split[1]));
+    var diff_in_hours = str2_split[0] - str1_split[0] + 24;
+    return ((diff_in_hours * 60) + (str2_split[1] - str1_split[1]));
   }
-  return ((str1_split[0] - str2_split[0]) * 60 + (str1_split[1] - str2_split[1]));
+  return ((str2_split[0] - str1_split[0]) * 60 + (str2_split[1] - str1_split[1]));
 
 
 }
@@ -45,4 +45,5 @@ function str_difference (str1,str2) { debugger;
 
 //console.log(to_milit_time("1:00pm"));
 //console.log(to_milit_time("10:00am"));
-console.log(str_difference("13:00","12:00"));
+//console.log(str_difference("13:00","12:00"));
+console.log(time_difference("12:30pm-12:00am"));
