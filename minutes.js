@@ -30,6 +30,7 @@ function to_milit_time(str) { //debugger;
 
 }
 
+/*need to add case for negative minutes*/
 function str_difference (str1,str2) { //debugger;
   var str1_split = str1.split(":");
   var str2_split = str2.split(":");
