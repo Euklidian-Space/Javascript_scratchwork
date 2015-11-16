@@ -31,14 +31,15 @@ function to_milit_time(str) { //debugger;
 }
 
 /*need to add case for negative minutes*/
-function str_difference (str1,str2) { //debugger;
+function str_difference (str1,str2) { debugger;
   var str1_split = str1.split(":");
   var str2_split = str2.split(":");
-  if ((str2_split[0] - str1_split[0]) < 0) {
-    var diff_in_hours = str2_split[0] - str1_split[0] + 24;
-    return ((diff_in_hours * 60) + (str2_split[1] - str1_split[1]));
-  }
-  return ((str2_split[0] - str1_split[0]) * 60 + (str2_split[1] - str1_split[1]));
+  var time1 = parseInt(str1_split[0]) + parseInt(str1_split[1]) / 60;
+  var time2 = parseInt(str2_split[0]) + parseInt(str2_split[1]) / 60;
+
+  if((time2 - time1) < 0) return (time2 - time1 + 24) * 60;
+
+  return (time2 - time1) * 60;
 
 
 }
@@ -47,4 +48,7 @@ function str_difference (str1,str2) { //debugger;
 //console.log(to_milit_time("1:00pm"));
 //console.log(to_milit_time("10:00am"));
 //console.log(str_difference("13:00","12:00"));
-console.log(time_difference("12:30pm-12:00am"));
+//console.log(time_difference("12:30pm-12:00am"));
+//console.log(time_difference("1:23am-1:08am"));
+//console.log(time_difference("2:00pm-3:00pm"));
+//console.log(time_difference("11:00am-2:10pm"));
