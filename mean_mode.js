@@ -1,4 +1,4 @@
-function mean_mode_equal(array) {debugger;
+function mean_mode_equal(array) {//debugger;
   /*
   var sorted_asc = array.sort(function(a,b){
     return a-b;
@@ -41,4 +41,4 @@ function frequency(obj,array) {
 }
 
 //console.log(mean_mode_equal([1,2,3]));
-console.log(mean_mode_equal([4,4,4,6,2]));
+//console.log(mean_mode_equal([4,4,4,6,2]));
