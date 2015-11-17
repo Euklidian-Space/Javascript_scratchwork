@@ -1,11 +1,11 @@
-function mean_mode_equal(array) {
+function mean_mode_equal(array) {debugger;
   /*
   var sorted_asc = array.sort(function(a,b){
     return a-b;
   });
   */
 
-  var mean = array.reduce(function(prev,next){prev + next;})/array.length;
+  var mean = array.reduce(function(prev,next){return prev + next;}) / array.length;
 
 
   var obj = objectify(array);
@@ -15,7 +15,7 @@ function mean_mode_equal(array) {
     return freq[prev] > freq[next] ? prev:next;
   });
 
-  if (mean === mode) return 1;
+  if (mean == mode) return 1;
   return 0;
 
 }
@@ -40,4 +40,5 @@ function frequency(obj,array) {
   return obj;
 }
 
-console.log(mean_mode_equal([1,2,3]));
+//console.log(mean_mode_equal([1,2,3]));
+console.log(mean_mode_equal([4,4,4,6,2]));
