@@ -1,2 +1,1 @@
-This repo is just scratchwork.  A place for me to run algorithms I have coded to see if
-they work.
+This repo is a collection of codebyte and codewars solutions.  Mainly just practice to keep mind algorithmically sound.
