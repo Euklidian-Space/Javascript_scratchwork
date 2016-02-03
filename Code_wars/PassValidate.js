@@ -25,7 +25,8 @@
 // password("Ab1!@#$%^&*()-_+={}[]|\:;?/>.<,"); ===> true;
 
 var PassValidate = function(str){
-  
+  var reg_ex = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+  return reg_ex.test(str);
 };
 
 
