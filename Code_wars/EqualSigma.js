@@ -30,43 +30,69 @@
 
 // Happy coding!!
 
-module.exports = {
+var Primes = require("./FirstNPrimes");
+
   
-  EqualSigma: function(n) {
-    var data = this.dataScrub(n);
-    var data_reversed = this.reverseElements(data);
+  var EqualSigma =  function(n) {
+    var data = dataScrub(n);
+    var data_reversed = reverseElements(data);
     
     var EqualSigma = [];
     
     for(var i = 0; i < data.length; i++) {
-      if(this.sigma1(data[i]) === this.sigma1(data_reversed[i])) {
+      if(sigma1(data[i]) === sigma1(data_reversed[i])) {
         EqualSigma.push(data[i]);
         EqualSigma.push(data_reversed[i]);
       }
     }
     
-    return EqualSigma.reduce(function(prev,next) {
+    if (EqualSigma.length === 0) {
+      return 0;
+    } else{
+      return EqualSigma.reduce(function(prev,next) {
+        return prev + next;
+      });  
+    }
+    
+    
+  };
+  
+
+
+
+
+var findDivisors = function(n) {
+    
+    
+    
+    if (Primes.isPrime(n)) {
+      return [1,n];
+    }
+    
+    var arr = [];
+    
+    for(var i = 1; i < n; i++) {
+      if (n % i === 0) {
+        arr.push(i);
+      }
+    }
+    
+    return arr;
+    
+  };
+  
+  var isPalindrome = function(n) {
+    return n == n.toString().split("").reverse().join("");
+  };
+  
+  var sigma1 = function(n) {
+    var divisors = findDivisors(n);
+    return divisors.reduce(function(prev,next){
       return prev + next;
     });
-    
-  },
+  };
   
-  divisors: function(n) {
-    
-
-    
-  },
-  
-  
-  isPalindrome: function(n) {
-    return n == n.toString().split("").reverse().join("");
-  },
-  
-  sigma1: function(n) {
-    
-  },
-  
-  dataScrub: function(n) {
+  var dataScrub = function(n) {
     var int_array = [];
    // var palindromic = [];
     
@@ -74,7 +100,7 @@ module.exports = {
       int_array.push(i);  
     }
     
-    var palindromic = int_array.filter(this.isPalindrome);
+    var palindromic = int_array.filter(isPalindrome);
     
     //take out palindromes
     var filter_out_palin = int_array.filter(function(elem){
@@ -94,11 +120,12 @@ module.exports = {
         return true;
       }
     });
-  },
+  };
   
-  reverseElements: function(arr) {
+  var reverseElements = function(arr) {
     return arr.map(function(elem) {
       return parseInt(elem.toString().split("").reverse().join("")); 
     });
-  }
-}
+  };
+  
+  module.exports = EqualSigma;
