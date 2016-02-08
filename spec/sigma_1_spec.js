@@ -6,5 +6,6 @@ describe('sigma1', function(){
     expect(EqualSigma(738)).toEqual(528);
     expect(EqualSigma(917)).toEqual(1353);
     expect(EqualSigma(1500)).toEqual(1353);
+    expect(EqualSigma(2000)).toEqual(4565);
   });
 });

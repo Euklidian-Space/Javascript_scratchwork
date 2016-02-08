@@ -35,21 +35,22 @@ var Primes = require("./FirstNPrimes");
   
   var EqualSigma =  function(n) {
     var data = dataScrub(n);
-    var data_reversed = reverseElements(data);
+    //var data_reversed = reverseElements(data);
     
-    var EqualSigma = [];
+    var EqualSigmas = [];
     
     for(var i = 0; i < data.length; i++) {
-      if(sigma1(data[i]) === sigma1(data_reversed[i])) {
-        EqualSigma.push(data[i]);
-        EqualSigma.push(data_reversed[i]);
+      if(sigma1(data[i]) === sigma1(reverseElement(data[i]))) {
+        EqualSigmas.push(data[i]);
       }
     }
     
-    if (EqualSigma.length === 0) {
+    
+    
+    if (EqualSigmas.length === 0) {
       return 0;
     } else{
-      return EqualSigma.reduce(function(prev,next) {
+      return EqualSigmas.reduce(function(prev,next) {
         return prev + next;
       });  
     }
@@ -61,23 +62,23 @@ var Primes = require("./FirstNPrimes");
 
 
 
-var findDivisors = function(n) {
+  var findDivisors = function(n) {
     
+    var limit = Math.sqrt(n);
+    var divisors = [];
     
-    
-    if (Primes.isPrime(n)) {
-      return [1,n];
-    }
-    
-    var arr = [];
-    
-    for(var i = 1; i < n; i++) {
-      if (n % i === 0) {
-        arr.push(i);
+    for(var i = 1; i <= limit; i++) {
+      if(n % i === 0){
+        divisors.push(i);
+        if(i !== n/i){
+          divisors.push(n/i);
+        }
       }
     }
     
-    return arr;
+    return divisors.sort(function(prev, next){
+      return prev - next;
+    });
     
   };
   
@@ -92,6 +93,8 @@ var findDivisors = function(n) {
     });
   };
   
+  
+  
   var dataScrub = function(n) {
     var int_array = [];
    // var palindromic = [];
@@ -100,32 +103,26 @@ var findDivisors = function(n) {
       int_array.push(i);  
     }
     
-    var palindromic = int_array.filter(isPalindrome);
     
-    //take out palindromes
-    var filter_out_palin = int_array.filter(function(elem){
-      if(palindromic.indexOf(elem) >= 0) {
-        return true;
-      } else {
-        return false;
-      }
+    //take out multiples of 10
+    int_array = int_array.filter(function(elem) {
+       return elem % 10 !== 0  
     });
     
-    //finally, we take out numbers whose reverse is greater than n
     
-    return filter_out_palin.filter(function(elem) {
-      if (elem.toString().split("").reverse().join("") > n) {
-        return false;
-      } else {
-        return true;
-      }
+     //take out palindromes
+    return int_array.filter(function(elem){
+      return !isPalindrome(elem);
     });
+    
   };
   
-  var reverseElements = function(arr) {
-    return arr.map(function(elem) {
-      return parseInt(elem.toString().split("").reverse().join("")); 
-    });
+  
+  
+  var reverseElement = function(n) {
+    
+    return parseInt(n.toString().split("").reverse().join("")); 
+    
   };
   
   module.exports = EqualSigma;
