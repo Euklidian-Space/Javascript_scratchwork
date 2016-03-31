@@ -27,3 +27,65 @@
 //   'player2': [[1, 2], [3, 3]] }
 
 // Good luck with your battles!
+
+/*
+               Happy Battling!
+                
+                ..:::;;;:::..         
+           ..:::::d88888b::;;:::..     
+        .:::d88bad8888888::88888b:::. 
+      .::d88888888888:?88:888888888b::.  
+    .::d8888888888888a:88888888888888b::.
+   :::d8888888888888888888888888888888b:::         
+  ::::8888?88888888888888888888888888888b::       
+ :::ad8??:a888?8888:888888:888888888888888b:     
+.:d8888a888888a:?88:88888?:8888888888888888:.   
+::)8888888888888a88888888:a8888888888888888b:  
+::888888888888:???888888888??:::888888888888: 
+::Y888888888888sss:8888888aaa8888888888888P::
+`::???::::::::::::888888888:::::::::::::::::'
+ :::::::::::::::::888888888:::::::::::::::::
+  ::::::::::::::::888888888::::::::::::::::
+   :::::::::::::::888888888:::::::::::::::
+    `:::::::::::::888888888:::::::::::::'
+      `:::::::::::888888888::::aa:::::' 
+        `::::ad8888888888888888P::::'  
+           ``::??Y888888888P??::''    
+                ``:::::::::''
+*/
+'use strict'
+
+var Battle = (player1,player2) => { debugger;
+  
+  let player1_reverse = player1.map(function(elem){
+    return elem.reverse();
+  });
+  
+  let player2_reverse = player2.map(function(elem){
+    return elem.reverse();
+  });
+  
+  let num_of_battles = player1.length >= player2.length ? player1.length : player2.length;
+  
+  for(let i = 0; i < num_of_battles; i++) {
+    
+    for(let j = 0; j < 2; j++) {
+      
+      if(player1[i][j] >= player2_reverse[i][j]) {
+        player2.shift();
+      }  
+      
+      if(player2[i][j] >= player1_reverse[i][j]){
+        player1.shift();
+      }
+      
+    }
+  
+  }
+  
+  return {'player1':player1,'player2':player2};
+  
+  
+};
+
+module.exports = Battle;
