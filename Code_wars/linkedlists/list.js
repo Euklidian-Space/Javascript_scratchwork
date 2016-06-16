@@ -30,14 +30,52 @@ module.exports = (Node) => {
   };
   
   let sortedInsert = (head, data) => {
-    if(head.data < data) {
-      head.next = push(head.next, data);  
-      return head;
-    }else {
-      return sortedInsert(head.next, data);   
-    }
+    if(!head || head.data >= data) return push(head, data);
+    head.next = sortedInsert(head.next, data);
+    return head;
   };
-   
+  
+  let insertSort = head => {
+    if(!head) return null;
+    if(head.next === null) return head;
+    return sortedInsert(insertSort(head.next), head.data);
+  };
+  
+  
+  let append = (headA, headB) => {
+    if(!headA && !headB) return null;
+    if(headA && !headB) return headA;
+    if(!headA && headB) return headB;
+    
+    headA.next = append(headA.next, headB);
+    return headA;
+  };
+  
+  let removeDuplicates = head => {
+    // if(head.next === null) return head;
+    // return head.data === head.next.data ? removeDuplicates(append(head, head.next.next)) : removeDuplicates(head.next);
+  
+    if(head.next === null) return head;
+    if(head.data === head.next.data) {
+      head.next = head.next.next;
+      return removeDuplicates(head);
+    }
+    
+    head.next = removeDuplicates(head.next);
+    
+    return head;
+  };
+  
+  let listDataToArray = list => {
+    let data_array = [];
+    while(list) {
+      data_array.push(list.data);
+      list = list.next;
+    }
+    return data_array;
+  }
+  
+  
   function generate_list(tail_data, args) {
     if(args.length === 0) return tail_data;
     let head;
@@ -47,6 +85,18 @@ module.exports = (Node) => {
     return generate_list(push(head,data), args);
   }
   
-   return {push: push, buildOneTwoThree: buildOneTwoThree, generate_list:generate_list, length: length, count: count, getNth: getNth, insertNth: insertNth, sortedInsert: sortedInsert};  
+   return {
+     push: push, 
+     buildOneTwoThree: buildOneTwoThree, 
+     generate_list:generate_list, 
+     length: length, 
+     count: count, 
+     getNth: getNth, 
+     insertNth: insertNth, 
+     sortedInsert: sortedInsert, 
+     insertSort: insertSort,
+     append: append,
+     removeDuplicates: removeDuplicates
+   };  
 }
 
