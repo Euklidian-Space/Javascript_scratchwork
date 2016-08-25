@@ -4,7 +4,7 @@
 
 let largest_prod = arr => {
   let max_prod = 1, length = 2;
-  for (let i of range(0, arr.length)) {
+  for (let i in range(0, arr.length)) {
     let w = i, w_prod = 1, counter = 0;
     let e = i, e_prod = 1;
     while (true) {
@@ -19,7 +19,7 @@ let largest_prod = arr => {
   return max_prod;
 };
 
-function *range(min, max) {
+function *range(min, max) { //[min,max)
   while (min < max) {
     yield min;
     min += 1;
